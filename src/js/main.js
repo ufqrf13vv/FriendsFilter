@@ -1,3 +1,6 @@
+import styles from '../css/style.css';
+import html from '../index.html';
+
 new Promise( (resolve, reject) => {
     VK.init({
         apiId: 6302770

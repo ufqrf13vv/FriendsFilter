@@ -3,7 +3,9 @@ html {
   height: 100%;
 }
 
-*,*::before,*::after {
+*,
+*::before,
+*::after {
   box-sizing: inherit;
 }
 
@@ -42,10 +44,10 @@ input:focus {
 @font-face {
   font-family: 'FiraSansMedium';
   src: local('Fira Sans Medium'),
-  local('FiraSans-Medium'),
-  url('../fonts/FiraSansMedium/Firasansmedium.woff2') format('woff2'),
-  url('../fonts/FiraSansMedium/Firasansmedium.woff') format('woff'),
-  url('../fonts/FiraSansMedium/Firasansmedium.ttf') format('truetype');
+    local('FiraSans-Medium'),
+    url(../fonts/Firasansmedium.woff2) format('woff2'),
+    url(../fonts/Firasansmedium.woff) format('woff'),
+    url(../fonts/Firasansmedium.ttf) format('truetype');
   font-weight: 500;
   font-style: normal;
 }
@@ -53,10 +55,10 @@ input:focus {
 @font-face {
   font-family: 'FiraSansLight';
   src: local('Fira Sans Light'),
-  local('FiraSans-Light'),
-  url('../fonts/FiraSansLight/Firasanslight.woff2') format('woff2'),
-  url('../fonts/FiraSansLight/Firasanslight.woff') format('woff'),
-  url('../fonts/FiraSansLight/Firasanslight.ttf') format('truetype');
+    local('FiraSans-Light'),
+    url(../fonts/Firasanslight.woff2) format('woff2'),
+    url(../fonts/Firasanslight.woff) format('woff'),
+    url(../fonts/Firasanslight.ttf) format('truetype');
   font-weight: 200;
   font-style: normal;
 }
@@ -110,7 +112,7 @@ input:focus {
 
 .filter__input--ico {
   padding-left: 30px;
-  background: url("../img/search.svg") no-repeat 8px 7px, #fff;
+  background: url(../img/search.svg) no-repeat 8px 7px, #fff;
 }
 
 .filter__wrapper {
@@ -170,11 +172,11 @@ input:focus {
 }
 
 .filter__item-btn--add {
-  background: url("../img/plus.svg") no-repeat 0 0;
+  background: url(../img/plus.svg) no-repeat 0 0;
 }
 
 .filter__item-btn--remove {
-  background: url("../img/times.svg") no-repeat 0 0;
+  background: url(../img/times.svg) no-repeat 0 0;
 }
 
 .filter__footer {

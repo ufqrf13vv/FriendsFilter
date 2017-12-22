@@ -1,40 +1,41 @@
-let webpack = require('webpack');
-let HtmlPlugin = require('html-webpack-plugin');
-let CleanWebpackPlugin = require('clean-webpack-plugin');
-let ExtractTextPlugin = require('extract-text-webpack-plugin');
-let loaders = require('./webpack.config.loaders')();
-let path = require('path');
-
-loaders.push({
-    test: /\.css$/,
-    loader: ExtractTextPlugin.extract({
-        fallbackLoader: 'style-loader',
-        loader: 'css-loader'
-    })
-});
+const path = require('path');
+const extractTextPlugin = require('extract-text-webpack-plugin');
+const PATHS = {
+    source: path.join(__dirname, 'src'),
+    build: path.join(__dirname, 'public')
+};
 
 module.exports = {
-    entry: './src/index.js',
+    entry: PATHS.source + '/js/main.js',
     output: {
-        filename: '[name].[hash].js',
-        path: path.resolve('dist')
+        path: PATHS.build,
+        publicPath:"../",
+        filename: '[name].js'
     },
-    devtool: 'source-map',
     module: {
-        loaders
+        loaders: [{
+            test: /\.js$/,
+            loader: 'babel-loader',
+            options: { presets: ['es2015'] }
+        }, {
+            test: /\.css$/,
+            loader: extractTextPlugin.extract({
+                fallback: 'style-loader',
+                use: [ 'css-loader', 'resolve-url-loader' ]
+            })
+        }, {
+            test: /\.(png|jpg|svg)$/,
+            loader: 'file-loader?name=img/[name].[ext]'
+        }, {
+            test: /\.(html)$/,
+            loader: 'file-loader?name=[name].[ext]'
+        }, {
+            test: /\.(ttf|woff|woff2)$/,
+            loader: 'file-loader?name=fonts/[name].[ext]'
+        }
+        ]
     },
     plugins: [
-        new webpack.optimize.UglifyJsPlugin({
-            sourceMap: true,
-            compress: {
-                drop_debugger: false
-            }
-        }),
-        new ExtractTextPlugin('styles.css'),
-        new HtmlPlugin({
-            title: 'Loft School sample project',
-            template: 'index.hbs'
-        }),
-        new CleanWebpackPlugin(['dist'])
+        new extractTextPlugin('/css/style.css')
     ]
 };
