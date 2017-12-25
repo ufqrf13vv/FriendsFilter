@@ -125,7 +125,6 @@ export function renderTemplate(dataList, initiallyList, list, leftContainer, rig
         //  общий список
         html = render(dataList);
         leftContainer.innerHTML = html;
-
         //  список выбранных друзей
         html = render({items: initiallyList});
         rightContainer.innerHTML = html
