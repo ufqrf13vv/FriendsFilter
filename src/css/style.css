@@ -1,9 +1,11 @@
+@import "../../node_modules/normalize.css/normalize.css";
+
 html {
     box-sizing: border-box;
     height: 100%;
 }
 
-*,*::before,*::after {
+*, *::before, *::after {
     box-sizing: inherit;
 }
 
@@ -123,6 +125,21 @@ input:focus {
     width: 50%;
     padding: 0 15px;
     overflow-y: scroll;
+}
+
+.filter__block::-webkit-scrollbar-track {
+    border-radius: 5px;
+    background-color: #ebf0f4;
+}
+
+.filter__block::-webkit-scrollbar {
+    width: 3px;
+    background-color: #ebf0f4;
+}
+
+.filter__block::-webkit-scrollbar-thumb {
+    border-radius: 3px;
+    background-color: #c4c4c4;
 }
 
 .filter__block:not(:last-of-type) {
