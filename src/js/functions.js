@@ -1,3 +1,5 @@
+import Handlebars from 'handlebars/dist/handlebars.min.js';
+
 //  Определение класса кнопки для идентификации списка
 export function buttonClass(children) {
     let result = false;
@@ -91,7 +93,7 @@ export function getDragElements(container) {
 
 //  Рендерим списки
 export function renderTemplate(dataList, initiallyList, list, leftContainer, rightContainer = '') {
-    const Handlebars = require('handlebars');
+    //const Handlebars = require('handlebars');
     let html = '';
     let dataListItems = dataList.items;
     let template = `{{#each items}}

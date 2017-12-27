@@ -37,5 +37,13 @@ module.exports = {
     },
     plugins: [
         new extractTextPlugin('/css/style.css')
-    ]
+    ],
+    devServer: {
+        stats: 'errors-only'
+    },
+    resolve: {
+        alias: {
+            handlebars: 'handlebars/dist/handlebars.min.js'
+        }
+    }
 };
