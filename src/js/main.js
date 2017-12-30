@@ -1,6 +1,6 @@
 import { buttonClass, moveRight, moveLeft, getChooseArray, getDragElements, renderTemplate } from './functions';
 import styles from '../css/style.css';
-import html from '../index.html';
+import html from '../index.hbs';
 
 new Promise( (resolve, reject) => {
     VK.init({
