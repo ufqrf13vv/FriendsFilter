@@ -44,7 +44,6 @@ module.exports = {
             title: 'Другофильтр',
             template: PATHS.source + '/index.hbs'
         })
-        //new CleanWebpackPlugin(['public'])
     ],
     devServer: {
         contentBase: path.join(__dirname, "/public"),

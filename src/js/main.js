@@ -1,4 +1,8 @@
-import { buttonClass, moveRight, moveLeft, getChooseArray, getDragElements, renderTemplate } from './functions';
+import { buttonClass, getChooseArray, renderTemplate } from './lists';
+import { moveRight, moveLeft, getDragElements } from './d&d';
+import api from './vk';
+import searchFriends from './search';
+
 import styles from '../css/style.css';
 import html from '../index.hbs';
 
@@ -14,15 +18,7 @@ new Promise( (resolve, reject) => {
         }
     }, 2)
 }).then(response => {
-    return new Promise( (resolve, reject) => {
-        VK.api('friends.get', { fields: 'nickname, photo_100', v: '5.69', count: 10 }, data => {
-            if (data.response) {
-                resolve(data.response);
-            } else {
-                reject(new Error('Не удалось получить список друзей!'))
-            }
-        })
-    });
+    return api('friends.get', { fields: 'nickname, photo_100', v: '5.69' });
 }).then(result => {
     let wrapper = document.querySelector('.filter__wrapper');
     let search = document.querySelector('.filter__search');
@@ -45,32 +41,14 @@ new Promise( (resolve, reject) => {
 
     // Поиск
     search.addEventListener('keyup', event => {
-        let fullName = '';
-
         if (event.target.id == 'search-all') {
-            let all = [];
-
-            resultList.forEach( item => {
-                fullName = `${item.first_name} ${item.last_name}`;
-
-                if (fullName.toLowerCase().indexOf(event.target.value.toLowerCase()) != -1) {
-                    all.push(item);
-                }
-            });
+            let all = searchFriends(resultList);
 
             renderTemplate({ items: all }, firstList, 'all', allFriendsList);
             getDragElements(wrapper);
         } else {
             let chooseArray = getChooseArray(firstList, resultList);
-            let newChooseArray = [];
-
-            chooseArray.forEach(item => {
-                fullName = `${item.first_name} ${item.last_name}`;
-
-                if (fullName.toLowerCase().indexOf(event.target.value.toLowerCase()) != -1) {
-                    newChooseArray.push(item);
-                }
-            });
+            let newChooseArray = searchFriends(chooseArray);
 
             renderTemplate({ items: newChooseArray }, firstList, 'choose-search', allFriendsList, chooseFriendsList);
             getDragElements(wrapper);
